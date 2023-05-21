@@ -1,5 +1,6 @@
 const itemsResolvers = require('./items')
 const userResolvers = require('./users')
+const bidResolbers = require('./bid')
 
 module.exports = {
     Query: {
@@ -7,6 +8,8 @@ module.exports = {
     },
 
     Mutation: {
-        ...userResolvers.Mutation
+        ...userResolvers.Mutation,
+        ...itemsResolvers.Mutation,
+        ...bidResolbers.Mutation
     }
 }

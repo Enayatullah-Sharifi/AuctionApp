@@ -7,7 +7,11 @@ connectDB();
 const typeDefs = require('./server/graphql/typeDefs')
 const resolvers = require('./server/graphql/resolvers')
 
-const server = new ApolloServer({ typeDefs, resolvers })
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: ({ req }) => ({ req })
+})
 
 const port = process.env.PORT || 8080;
-server.listen(port, console.log(`Server running on port ${port}`))
+server.listen(port, console.log(`🚀 Server running on port ${port}`))
