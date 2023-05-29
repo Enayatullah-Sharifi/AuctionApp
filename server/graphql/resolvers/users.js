@@ -13,6 +13,7 @@ function generateToken(user) {
 }
 
 
+
 module.exports = {
     Mutation: {
         async login(_, { username, password}) {

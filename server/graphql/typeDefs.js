@@ -37,6 +37,7 @@ module.exports = gql`
         category: String!,
         startingBid: Int!,
         minBid: Int!
+        duration: String
     }
     type Query {
         getItems: [Item]
@@ -50,5 +51,9 @@ module.exports = gql`
         deleteItem(itemId: ID): String!
 
         createBid(itemId: String!, body: Int!): Item!
+    }
+
+    type Subscription {
+        bid: Bids
     }
 `

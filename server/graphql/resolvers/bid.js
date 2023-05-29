@@ -16,8 +16,16 @@ module.exports = {
                     createdAt: new Date().toISOString()
                 })
                 await item.save()
+                context.pubsub.publish('NEW_BID', {
+                    bid: item
+                })
                 return item;
             } else throw new UserInputError('Item not found')
+        }
+    },
+    Subscription: {
+        bid: {
+            subscribe: (_, __, { pubsub }) => pubsub.asyncIterator('NEW_BID')
         }
     }
 }

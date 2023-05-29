@@ -1,6 +1,13 @@
 const Item = require('../../model/Item')
 const checkAuth = require('../../../utils/check-auth')
 const { AuthenticationError } = require('apollo-server')
+
+function notification(){
+    Notification.requestPermission().then(per => {
+        new Notification('wowo')
+    })
+}
+
 module.exports = {
     Query: {
 
@@ -26,7 +33,7 @@ module.exports = {
 
     Mutation: {
         // cteate an item
-        async createItem(_, {item: { name, category, startingBid, minBid }}, context){
+        async createItem(_, {item: { name, category, startingBid, minBid, duration }}, context){
             const user = checkAuth(context);
             console.log(user)
             const newItem = new Item({
